@@ -1,0 +1,34 @@
+<h1>create new spot</h1>
+<p>tell us about your hidden gems...</p>
+
+<form action="/spots/add" method="POST">
+  <label for="name">spot name: </label>
+  <input type="text" name="name" id="name">
+  {{!-- <label for="address">Address: </label>
+  <input type="text" name="address" id="address"> --}}
+  <label for="destination">destination: </label>
+  <input type="text" name="destination" id="destination">
+
+  <label for="visitDate">visit: </label>
+  <input type="text" name="visitDate" id="visitDate">
+
+  <label for="status">status: </label>
+  <input type="text" name="status" id="status">
+
+  <label for="category">category: </label>
+  <input type="text" name="category" id="category">
+
+  <label for="price">price: </label>
+  <input type="text" name="price" id="price">
+
+  <label for="comment">comment: </label>
+  <input type="text" name="comment" id="comment">
+
+  <label for="img">image: </label>
+  <input type="text" name="img" id="img">
+
+  <label for="ranking">ranking: </label>
+  <input type="text" name="ranking" id="ranking">
+
+  <button type="submit">add spots</button>
+</form>
