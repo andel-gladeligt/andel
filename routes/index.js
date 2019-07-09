@@ -16,6 +16,10 @@ router.get("/spots/add", (req, res, next) => {
   res.render("spotsAdd");
 });
 
+router.get("/spotCard", (req, res, next) => {
+  res.render("spotCard");
+});
+
 router.post("/spots/add", (req, res, next) => {
   const {
     name,
@@ -26,8 +30,11 @@ router.post("/spots/add", (req, res, next) => {
     price,
     comment,
     img,
-    ranking
+    ranking,
+    address
   } = req.body;
+
+  console.log(req.body);
 
   Spots.create({
     name,
