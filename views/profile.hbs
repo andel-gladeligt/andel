@@ -11,7 +11,9 @@
 
 {{!-- display all the users that we follow --}}
 {{!-- <span>following: {{updatedUser.inspirations}} </span> --}}
-<a href="/following/{{updatedUser.inspirations}}">people I follow</a>
+
+<a href="/following">people I follow</a>
+
 
 
 {{!-- add a button to unfollow --}}
@@ -23,3 +25,7 @@
   <input type="text" name="userSearch" id="inspirations" />
   <button type="submit">add user</button>
 </form>
+
+{{#if errorMessage }}
+<div>{{errorMessage}}</div>
+{{/if}}

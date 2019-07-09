@@ -51,19 +51,34 @@ router.post("/spots/add", (req, res, next) => {
 router.post("/user/add", (req, res, next) => {
   const { userSearch } = req.body;
   //suche nach eingabe aus form & suche nach user und dessen username
+
   User.findOne({ username: userSearch }).then(user => {
     //finde eingeloggten user und pushe object id des gesuchten users in array
-    User.findByIdAndUpdate(
-      { _id: req.user._id },
-      { $push: { inspirations: user._id } }
-    )
-      .then(updatedUser => {
-        console.log(updatedUser);
-        res.redirect("/profile");
-      })
-      .catch(err => {
-        next(err);
-      });
+
+    User.findOne({ _id: req.user._id }).then(loggedInUser => {
+      if (user) {
+        User.findOneAndUpdate(
+          { _id: req.user._id },
+          { $addToSet: { inspirations: user._id } },
+          { new: true }
+        )
+          .then(updatedUser => {
+            if (
+              loggedInUser.inspirations.length ==
+              updatedUser.inspirations.length
+            ) {
+              res.render("profile", {
+                errorMessage: "You are already friends"
+              });
+            } else res.redirect("/profile");
+          })
+          .catch(err => {
+            next(err);
+          });
+      } else {
+        res.render("profile", { errorMessage: "No user found" });
+      }
+    });
   });
 });
 
@@ -80,6 +95,7 @@ router.get("/friendsSpots", (req, res) => {
 router.get("/friendsDestination/:destinationId", (req, res, next) => {
   const destinationId = req.params.destinationId;
   Spots.find({ destination: destinationId }).then(spots => {
+    console.log(spots);
     res.render("friendsDestination", { spots });
   });
 });
@@ -93,7 +109,21 @@ router.get("/spotCard/:spotId", (req, res, next) => {
 });
 
 router.get("/following", (req, res) => {
-  res.render("following", { updatedUser });
+  User.findOne({ _id: req.user._id })
+    .populate("inspirations")
+    .then(user => {
+      res.render("following", { user });
+    });
 });
 
+router.get("/unfollow/:id", (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $pull: { inspirations: req.params.id } },
+    { new: true }
+  ).then(updatedUser => {
+    console.log(updatedUser);
+    res.redirect("/following");
+  });
+});
 module.exports = router;

@@ -26,7 +26,7 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
+  const username = req.body.username.trim();
   const password = req.body.password;
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
@@ -49,8 +49,8 @@ router.post("/signup", (req, res, next) => {
 
     newUser
       .save()
-      .then(() => {
-        res.redirect("/profile");
+      .then(user => {
+        req.logIn(user, () => res.redirect("/profile"));
       })
       .catch(err => {
         res.render("auth/signup", { message: "Something went wrong" });

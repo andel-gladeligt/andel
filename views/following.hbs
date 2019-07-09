@@ -1,7 +1,9 @@
 <h1>following</h1>
 <p>this page shows all persons I am following</p>
-{{#updatedUser}}
-<span>{{this.inspirations}}</span>
-{{/updatedUser}}
 
-<button type="submit">unfollow</button>
+{{#each user.inspirations}}
+<a href="/following/{{this._id}}">{{this.username}}</a>
+<form action="/unfollow/{{this.id}}" method="GET">
+  <button type="submit">unfollow</button>
+</form>
+{{/each}}
