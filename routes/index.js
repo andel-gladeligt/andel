@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Spots = require("../models/Spots");
+const User = require("../models/User");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
+});
+
+router.get("/profile", (req, res, next) => {
+  res.render("profile");
 });
 
 router.get("/spots/add", (req, res, next) => {
@@ -41,6 +46,25 @@ router.post("/spots/add", (req, res, next) => {
     .catch(err => {
       next(err);
     });
+});
+
+router.post("/user/add", (req, res, next) => {
+  const { userSearch } = req.body;
+  //suche nach eingabe aus form & suche nach user und dessen username
+  User.findOne({ username: userSearch }).then(user => {
+    //finde eingeloggter user und pushe object id des gesuchten users in array
+    User.findByIdAndUpdate(
+      { _id: req.user._id },
+      { $push: { inspirations: user._id } }
+    )
+      .then(updatedUser => {
+        console.log(updatedUser);
+        res.redirect("/profile");
+      })
+      .catch(err => {
+        next(err);
+      });
+  });
 });
 
 // //shows all destinations from spots of friends - friendsSpots.hbs

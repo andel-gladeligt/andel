@@ -1,0 +1,17 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<a href="/friendsSpots">inspiration</a>
+<a href="/messages">messages</a>
+<a href="/auth/logout">Logout</a>
+
+{{!-- form to add another user via email or username --}}
+<form action="/user/add" method="POST">
+  <label for="inspirations">username or email address: </label>
+  <input type="text" name="userSearch" id="inspirations" />
+  <button type="submit">add user</button>
+</form>
+
+{{!-- display all the users that we follow --}}
+{{!-- <span>following: {{updatedUser.inspirations}} </span> --}}
+
+{{!-- add a button to unfollow --}}
