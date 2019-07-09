@@ -7,14 +7,6 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/friendsSpots", (req, res) => {
-  Spots.find().then(spots => {
-    const category = spots.map(x => x.destination);
-    const cat = [...new Set(category)];
-    res.render("friendsSpots", { cat, spots });
-  });
-});
-
 router.get("/spots/add", (req, res, next) => {
   res.render("spotsAdd");
 });
@@ -52,9 +44,13 @@ router.post("/spots/add", (req, res, next) => {
 });
 
 // //shows all destinations from spots of friends - friendsSpots.hbs
-// router.get("/friendsSpots", (req, res, next) => {
-//   res.render("friendsSpots");
-// });
+router.get("/friendsSpots", (req, res) => {
+  Spots.find().then(spots => {
+    const spotId = spots.map(x => x.destination);
+    const cat = [...new Set(spotId)];
+    res.render("friendsSpots", { cat, spots });
+  });
+});
 
 //shows all spots of one destination of friends - friendsDestination.hbs
 router.get("/friendsDestination/:destinationId", (req, res, next) => {
@@ -65,8 +61,11 @@ router.get("/friendsDestination/:destinationId", (req, res, next) => {
 });
 
 //shows one spot - spotCard.hbs
-router.get("/spotCard", (req, res, next) => {
-  res.render("spotCard");
+router.get("/spotCard/:spotId", (req, res, next) => {
+  const spotId = req.params.spotId;
+  Spots.find({ _id: spotId }).then(spots => {
+    res.render("spotCard", { spots });
+  });
 });
 
 module.exports = router;

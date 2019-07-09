@@ -1,6 +1,7 @@
 <h1>destination</h1>
 <p>this page shows all spots of one destination of friends</p>
 {{#each spots}}
-<a href="/spotCard">{{this.name}}</a>
-{{this.status}}
+<a href="/spotCard/{{this.id}}">{{this.name}}</a>{{this.ranking}}
+{{this.author}}
+{{this.category}}
 {{/each}}

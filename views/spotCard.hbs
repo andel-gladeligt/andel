@@ -1,2 +1,16 @@
 <h1>spots</h1>
 <p>this page shows one spot</p>
+{{#spots}}
+<span>{{this.name}}{{this.ranking}}</span>
+<span>{{this.image}}</span>
+<ul style="list-style: none">
+  <li>{{this.destination}}</li>
+  <li>{{this.address}}</li>
+  <li>{{this.price}}</li>
+  <li>{{this.visitDate}}</li>
+  <li>{{this.status}}</li>
+  <li>{{this.category}}</li>
+  <li>{{this.comment}}</li>
+  <li>{{this.author}}</li>
+</ul>
+{{/spots}}
