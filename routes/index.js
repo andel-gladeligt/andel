@@ -52,7 +52,7 @@ router.post("/user/add", (req, res, next) => {
   const { userSearch } = req.body;
   //suche nach eingabe aus form & suche nach user und dessen username
   User.findOne({ username: userSearch }).then(user => {
-    //finde eingeloggter user und pushe object id des gesuchten users in array
+    //finde eingeloggten user und pushe object id des gesuchten users in array
     User.findByIdAndUpdate(
       { _id: req.user._id },
       { $push: { inspirations: user._id } }
@@ -90,6 +90,10 @@ router.get("/spotCard/:spotId", (req, res, next) => {
   Spots.find({ _id: spotId }).then(spots => {
     res.render("spotCard", { spots });
   });
+});
+
+router.get("/following", (req, res) => {
+  res.render("following", { updatedUser });
 });
 
 module.exports = router;

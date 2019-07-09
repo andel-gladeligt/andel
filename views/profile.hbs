@@ -1,8 +1,21 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<a href="/friendsSpots">inspiration</a>
-<a href="/messages">messages</a>
-<a href="/auth/logout">Logout</a>
+<h1>andel</h1>
+<p>Welcome to andel</p>
+<div class="profileMenu">
+  <a href="/friendsSpots">inspiration</a>
+  <a href="/messages">messages</a>
+  <a href="/auth/logout">logout</a>
+</div>
+
+<a id="addSpotsBtn" href="/spotsAdd">add new spot</a>
+
+
+{{!-- display all the users that we follow --}}
+{{!-- <span>following: {{updatedUser.inspirations}} </span> --}}
+<a href="/following/{{updatedUser.inspirations}}">people I follow</a>
+
+
+{{!-- add a button to unfollow --}}
+
 
 {{!-- form to add another user via email or username --}}
 <form action="/user/add" method="POST">
@@ -10,8 +23,3 @@
   <input type="text" name="userSearch" id="inspirations" />
   <button type="submit">add user</button>
 </form>
-
-{{!-- display all the users that we follow --}}
-{{!-- <span>following: {{updatedUser.inspirations}} </span> --}}
-
-{{!-- add a button to unfollow --}}
