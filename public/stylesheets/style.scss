@@ -1,8 +1,27 @@
-body {
-  padding: 50px;
+// general styling
+// yellow
+* {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 20px;
+}
+// login & signup
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fdd049;
+  padding: 50px;
+}
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#welcome {
+  margin: 30px;
 }

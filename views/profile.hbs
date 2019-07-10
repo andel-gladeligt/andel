@@ -24,7 +24,6 @@
 <div>{{errorMessage}}</div>
 {{/if}}
 
-{{#each spots}}
-{{this.category}}
-{{this.author.username}}
+{{#each unique}}
+<a href="/myList/{{this.id}}">{{destination}}</a>{{this.ranking}}
 {{/each}}

@@ -1,41 +1,124 @@
-<h1>create new spot</h1>
-<p>tell us about your hidden gems...</p>
+<!DOCTYPE html>
+<html>
 
-<form action="/spots/add" method="POST">
-  <label for="name">spot name: </label>
-  <input type="text" name="name" id="name">
-  {{!-- <label for="address">Address: </label>
-  <input type="text" name="address" id="address"> --}}
-  <label for="destination">destination: </label>
-  <input type="text" name="destination" id="destination">
+<head>
+  <meta charset='utf-8' />
+  <title>Place the geocoder input outside the map</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-  <label for="visitDate">visit: </label>
-  <input type="text" name="visitDate" id="visitDate">
+    #map {
+      position: absolute;
+      top: 30%,
+        height: 40% width: 40%;
+    }
+  </style>
+</head>
 
-  <label for="status">status: </label>
-  <input type="text" name="status" id="status">
+<body>
+  <h1>create new spot</h1>
+  <p>tell us about your hidden gems...</p>
 
-  {{!--  <label for="category">category: </label>
-  <input type="text" name="category" id="category"> --}}
-  <label for="category">category:</label>
-  <select name="category" id="category">
-    <option value="food">food</option>
-    <option value="art">art</option>
-    <option value="sleep">sleeps</option>
-    <option value="gems">gems</option>
-  </select>
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.css'
+    type='text/css' />
+  <style>
+    .geocoder {
+      position: absolute;
+      z-index: 1;
+      width: 50%;
+      left: 50%;
+      margin-left: -25%;
+      top: 20px;
+    }
 
-  <label for="price">price: </label>
-  <input type="text" name="price" id="price">
+    .mapboxgl-ctrl-geocoder {}
+  </style>
+  <div id='map'></div>
+  <div id='geocoder' class='geocoder'></div>
 
-  <label for="comment">comment: </label>
-  <input type="text" name="comment" id="comment">
 
-  <label for="img">image: </label>
-  <input type="text" name="img" id="img">
+  <form id="spot-add" action="/spots/add" method="POST">
+    <label for="name">spot name(*): </label>
+    <input type="text" name="name" id="name">
 
-  <label for="ranking">ranking: </label>
-  <input type="text" name="ranking" id="ranking">
+    <label for="address">spot address: </label>
+    <input style="display: none" type="text" name="address" id="address">
 
-  <button type="submit">add spots</button>
-</form>
+    <label for="destination">city/destination(*): </label>
+    <input type="text" name="destination" id="destination">
+
+    <label for="visitDate">date of visit: </label>
+    <input type="date" name="visitDate" id="visitDate">
+
+    <label for="status">status: </label>
+    <select name="status" id="status">
+      <option value="visited">visited</option>
+      <option value="in-planning">in-planning</option>
+    </select>
+
+    <label for="category">category(*):</label>
+    <select name="category" id="category">
+      <option value="food">food</option>
+      <option value="art">art</option>
+      <option value="sleep">sleeps</option>
+      <option value="gems">gems</option>
+    </select>
+
+    <label for="price">price: </label>
+    <select name="price" id="price">
+      <option value="budget">budget</option>
+      <option value="standard">standard</option>
+      <option value="spendy">spendy</option>
+    </select>
+
+    <label for="comment">comment: </label>
+    <input type="text" name="comment" id="comment">
+
+    <label for="img">image: </label>
+    <input type="text" name="img" id="img">
+
+    <label for="ranking">ranking: </label>
+    <select name="ranking" id="ranking">
+      <option value="nice">nice</option>
+      <option value="super-nice">super-nice</option>
+      <option value="super-super-nice">super-super-nice</option>
+    </select>
+
+    <button type="submit">add your spot</button>
+  </form>
+  <span>please fill in all the with * marked forms</span>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbWluc2hlbmciLCJhIjoiY2pydDhjMjlwMXhpaDN5cHMxcjNya2ZmbyJ9.Tc5kmo0vZ1VKJbLK83OloA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-79.4512, 43.6568],
+      zoom: 13
+    });
+
+    var geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl
+    });
+
+    const geocoderInput = geocoder.onAdd(map)
+    document.getElementById('spot-add').insertBefore(geocoderInput, document.getElementById('address'))
+
+    document.querySelector('#spot-add').onsubmit = (e) => {
+      const address = document.querySelector('.mapboxgl-ctrl-geocoder input').value
+      document.getElementById('address').value = address
+    }
+  </script>
+</body>
+
+</html>

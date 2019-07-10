@@ -13,7 +13,8 @@ const spotsSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ["food", "art", "sleep", "gems"]
+      enum: ["food", "art", "sleep", "gems"],
+      required: true
     },
     price: {
       type: String,
@@ -21,7 +22,7 @@ const spotsSchema = new Schema(
     },
     comment: String,
     image: String,
-    ranking: { type: String, enum: ["*", "**", "***"] },
+    ranking: { type: String, enum: ["nice", "super-nice", "super-super-nice"] },
     author: {
       type: Schema.Types.ObjectId,
       ref: "User"

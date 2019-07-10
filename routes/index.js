@@ -9,14 +9,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/profile", (req, res, next) => {
-  Spots.find()
+  Spots.find({ author: req.user._id })
     .populate("author")
     .then(spots => {
-      let filteredSpots = spots.filter(spot => {
-        return req.user._id == spot.author._id;
-      });
-      res.render("profile", { spots: filteredSpots });
+      const uniqueCity = spots.map(spot => spot.destination);
+      const unique = [...new Set(uniqueCity)];
+      res.render("profile", { unique, spots });
     });
+  // res.render("profile");
 });
 
 router.get("/spots/add", (req, res, next) => {
@@ -33,7 +33,8 @@ router.post("/spots/add", (req, res, next) => {
     price,
     comment,
     img,
-    ranking
+    ranking,
+    address
   } = req.body;
 
   Spots.create({
@@ -115,7 +116,6 @@ router.get("/friendsDestination/:destinationId", (req, res, next) => {
       res.render("friendsDestination", { spots: filteredSpots });
     });
 });
-
 //shows one spot - spotCard.hbs
 router.get("/spotCard/:spotId", (req, res, next) => {
   const spotId = req.params.spotId;
