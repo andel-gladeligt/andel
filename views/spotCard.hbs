@@ -25,8 +25,6 @@
 </head>
 
 <body>
-  <h1>create new spot</h1>
-  <p>tell us about your hidden gems...</p>
   <a id="home" href="/profile">home</a>
   <script
     src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.min.js'></script>
@@ -50,10 +48,11 @@
   <div id='map'></div>
   <div id='geocoder' class='geocoder'></div>
 
-  <h1>spots</h1>
-  <p>this page shows one spot</p>
   {{#spots}}
-  <span>{{this.name}}{{this.ranking}}</span>
+  <h1>{{this.name}}</h1>
+  <h2>{{this.author.username}} ranked this spot as {{this.ranking}}</h2>
+
+
   <span>{{this.image}}</span>
   <ul style="list-style: none">
     <li>{{this.destination}}</li>

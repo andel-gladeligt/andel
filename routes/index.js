@@ -25,11 +25,11 @@ router.get("/spots/add", (req, res, next) => {
 });
 
 router.get("/myList/:city", (req, res, next) => {
-  Spots.find({ author: req.user._id, destination: req.params.city }).then(
-    spots => {
-      res.render("spots", { spots });
-    }
-  );
+  Spots.find({ author: req.user._id, destination: req.params.city })
+    .populate("author")
+    .then(spots => {
+      res.render("mylist", { spots });
+    });
 });
 
 router.post("/spots/add", (req, res, next) => {
@@ -129,9 +129,11 @@ router.get("/friendsDestination/:destinationId", (req, res, next) => {
 //shows one spot - spotCard.hbs
 router.get("/spotCard/:spotId", (req, res, next) => {
   const spotId = req.params.spotId;
-  Spots.find({ _id: spotId }).then(spots => {
-    res.render("spotCard", { spots });
-  });
+  Spots.find({ _id: spotId })
+    .populate("author")
+    .then(spots => {
+      res.render("spotCard", { spots });
+    });
 });
 
 router.get("/following", (req, res) => {

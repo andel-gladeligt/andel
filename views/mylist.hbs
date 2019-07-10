@@ -1,0 +1,10 @@
+<h1>all my spots in </h1>
+<p>this page shows all spots in </p> <a id="home" href="/profile">home</a>
+<div>
+  {{#each spots}}
+  <span>{{this.name}}</span>
+  {{this.ranking}}
+  {{this.author.username}}
+  <a href="/spotCard/{{this.id}}">see spot</a>
+  {{/each}}
+</div>
