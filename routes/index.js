@@ -14,6 +14,7 @@ router.get("/profile", (req, res, next) => {
     .then(spots => {
       const uniqueCity = spots.map(spot => spot.destination);
       const unique = [...new Set(uniqueCity)];
+      console.log(unique);
       res.render("profile", { unique, spots });
     });
   // res.render("profile");
@@ -21,6 +22,14 @@ router.get("/profile", (req, res, next) => {
 
 router.get("/spots/add", (req, res, next) => {
   res.render("spotsAdd");
+});
+
+router.get("/myList/:city", (req, res, next) => {
+  Spots.find({ author: req.user._id, destination: req.params.city }).then(
+    spots => {
+      res.render("spots", { spots });
+    }
+  );
 });
 
 router.post("/spots/add", (req, res, next) => {
@@ -47,6 +56,7 @@ router.post("/spots/add", (req, res, next) => {
     comment,
     img,
     ranking,
+    address,
     author: req.user._id
   })
     .then(() => {

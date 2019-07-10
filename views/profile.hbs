@@ -24,6 +24,39 @@
 <div>{{errorMessage}}</div>
 {{/if}}
 
-{{#each unique}}
-<a href="/myList/{{this.id}}">{{destination}}</a>{{this.ranking}}
-{{/each}}
+<div class="myDestinations">
+  {{#each unique}}
+  <div class="">
+    <a href="/myList/{{this}}">{{this}}</a>
+    {{/each}}
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
