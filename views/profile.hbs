@@ -6,17 +6,11 @@
   <a href="/auth/logout">logout</a>
 </div>
 
-<a id="addSpotsBtn" href="/spotsAdd">add new spot</a>
+<a id="addSpotsBtn" href="/spots/add">add new spot</a>
 
 
 {{!-- display all the users that we follow --}}
-{{!-- <span>following: {{updatedUser.inspirations}} </span> --}}
-
 <a href="/following">people I follow</a>
-
-
-
-{{!-- add a button to unfollow --}}
 
 
 {{!-- form to add another user via email or username --}}
@@ -29,3 +23,8 @@
 {{#if errorMessage }}
 <div>{{errorMessage}}</div>
 {{/if}}
+
+{{#each spots}}
+{{this.category}}
+{{this.author.username}}
+{{/each}}

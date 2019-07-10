@@ -9,7 +9,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/profile", (req, res, next) => {
-  res.render("profile");
+  Spots.find()
+    .populate("author")
+    .then(spots => {
+      let filteredSpots = spots.filter(spot => {
+        return req.user._id == spot.author._id;
+      });
+      res.render("profile", { spots: filteredSpots });
+    });
 });
 
 router.get("/spots/add", (req, res, next) => {
@@ -38,7 +45,8 @@ router.post("/spots/add", (req, res, next) => {
     price,
     comment,
     img,
-    ranking
+    ranking,
+    author: req.user._id
   })
     .then(() => {
       res.redirect("/spots/add");
@@ -85,7 +93,10 @@ router.post("/user/add", (req, res, next) => {
 // //shows all destinations from spots of friends - friendsSpots.hbs
 router.get("/friendsSpots", (req, res) => {
   Spots.find().then(spots => {
-    const spotId = spots.map(x => x.destination);
+    let filteredSpots = spots.filter(spot => {
+      return req.user.inspirations.includes(spot.author);
+    });
+    const spotId = filteredSpots.map(spot => spot.destination);
     const cat = [...new Set(spotId)];
     res.render("friendsSpots", { cat, spots });
   });
@@ -94,10 +105,15 @@ router.get("/friendsSpots", (req, res) => {
 //shows all spots of one destination of friends - friendsDestination.hbs
 router.get("/friendsDestination/:destinationId", (req, res, next) => {
   const destinationId = req.params.destinationId;
-  Spots.find({ destination: destinationId }).then(spots => {
-    console.log(spots);
-    res.render("friendsDestination", { spots });
-  });
+  Spots.find({ destination: destinationId })
+    .populate("author")
+    .then(spots => {
+      console.log(spots);
+      let filteredSpots = spots.filter(spot => {
+        return req.user.inspirations.includes(spot.author._id);
+      });
+      res.render("friendsDestination", { spots: filteredSpots });
+    });
 });
 
 //shows one spot - spotCard.hbs
@@ -122,7 +138,6 @@ router.get("/unfollow/:id", (req, res) => {
     { $pull: { inspirations: req.params.id } },
     { new: true }
   ).then(updatedUser => {
-    console.log(updatedUser);
     res.redirect("/following");
   });
 });

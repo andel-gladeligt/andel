@@ -22,7 +22,10 @@ const spotsSchema = new Schema(
     comment: String,
     image: String,
     ranking: { type: String, enum: ["*", "**", "***"] },
-    author: Schema.Types.ObjectId
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
   },
   {
     timestamps: {
