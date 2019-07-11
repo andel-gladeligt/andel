@@ -14,13 +14,16 @@ red: #EB4245;
 
 */
 * {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
 h1 {
-  font-size: 60px; }
+  font-size: 60px;
+}
 
 h2 {
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 body {
   display: flex;
@@ -29,34 +32,40 @@ body {
   flex-direction: column;
   background-color: #e6b200;
   padding-bottom: 10px;
-  padding-top: 20px; }
+  padding-top: 20px;
+}
 
 #logo {
   display: flex;
   align-self: flex-start;
   padding-left: 2vw;
-  margin-left: 30px; }
+  margin-left: 30px;
+}
 
 #welcomeSentence {
   display: flex;
   align-self: flex-start;
   padding-left: 6vw;
   margin-left: 30px;
-  color: #8db8fe; }
+  color: #8db8fe;
+}
 
 .profileMenu a {
   color: #ececff;
   margin: 0.4rem;
   transition: -webkit-text-stroke 1s;
-  color: #3430ba; }
+  color: #3430ba;
+}
 
 .profileMenu a:hover {
   color: #ececff;
   text-decoration-line: line-through;
-  -webkit-text-stroke: 0.3px #3430ba; }
+  -webkit-text-stroke: 0.3px #3430ba;
+}
 
 #welcome {
-  margin: 30px; }
+  margin: 30px;
+}
 
 .profileMenu {
   display: flex;
@@ -65,7 +74,8 @@ body {
   align-items: flex-start;
   padding-left: 3vw;
   width: 90vw;
-  height: 5vw; }
+  height: 5vw;
+}
 
 .myDestination {
   display: flex;
@@ -73,46 +83,55 @@ body {
   margin-top: 40px;
   width: 100vw;
   height: 100vw;
-  margin: 20vw; }
+  margin: 20vw;
+}
 
 .square {
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+}
 
 .squareContent {
   color: white;
   position: absolute;
-  font-size: 4vw; }
+  font-size: 4vw;
+}
 
 .square:nth-child(6n + 1) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #eb4245; }
+  background-color: #eb4245;
+}
 
 .square:nth-child(6n + 2) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #3430ba; }
+  background-color: #3430ba;
+}
 
 .square:nth-child(6n + 3) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #5c680c; }
+  background-color: #5c680c;
+}
 
 .square:nth-child(6n + 4) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #20c572; }
+  background-color: #20c572;
+}
 
 .square:nth-child(6n + 5) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #e07f00; }
+  background-color: #e07f00;
+}
 
 .square:nth-child(6n + 6) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #8ad2e4; }
+  background-color: #8ad2e4;
+}
 
 /*# sourceMappingURL=style.css.map */

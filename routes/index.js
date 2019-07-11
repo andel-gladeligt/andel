@@ -50,6 +50,8 @@ router.post("/spots/add", (req, res, next) => {
     address
   } = req.body;
 
+  console.log(req.body);
+
   Spots.create({
     name,
     destination,
