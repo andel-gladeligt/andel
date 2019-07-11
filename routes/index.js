@@ -3,6 +3,11 @@ const router = express.Router();
 const Spots = require("../models/Spots");
 const User = require("../models/User");
 
+var geo = require("mapbox-geocoding");
+geo.setAccessToken(
+  "pk.eyJ1IjoiYW5nbWluc2hlbmciLCJhIjoiY2pydDhjMjlwMXhpaDN5cHMxcjNya2ZmbyJ9.Tc5kmo0vZ1VKJbLK83OloA"
+);
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
@@ -14,7 +19,6 @@ router.get("/profile", (req, res, next) => {
     .then(spots => {
       const uniqueCity = spots.map(spot => spot.destination);
       const unique = [...new Set(uniqueCity)];
-      console.log(unique);
       res.render("profile", { unique, spots });
     });
   // res.render("profile");
@@ -86,16 +90,16 @@ router.post("/user/add", (req, res, next) => {
               loggedInUser.inspirations.length ==
               updatedUser.inspirations.length
             ) {
-              res.render("profile", {
+              res.render("following", {
                 errorMessage: "You are already friends"
               });
-            } else res.redirect("/profile");
+            } else res.redirect("/following");
           })
           .catch(err => {
             next(err);
           });
       } else {
-        res.render("profile", { errorMessage: "No user found" });
+        res.render("following", { errorMessage: "No user found" });
       }
     });
   });
@@ -119,7 +123,6 @@ router.get("/friendsDestination/:destinationId", (req, res, next) => {
   Spots.find({ destination: destinationId })
     .populate("author")
     .then(spots => {
-      console.log(spots);
       let filteredSpots = spots.filter(spot => {
         return req.user.inspirations.includes(spot.author._id);
       });
@@ -132,7 +135,57 @@ router.get("/spotCard/:spotId", (req, res, next) => {
   Spots.find({ _id: spotId })
     .populate("author")
     .then(spots => {
-      res.render("spotCard", { spots });
+      let owner = req.user.username == spots[0].author.username;
+      spots[0].owner = owner;
+
+      geo.geocode("mapbox.places", spots[0].address, function(err, geoData) {
+        console.log();
+        res.render("spotCard", { spots, coor: geoData.features[0].center });
+      });
+    });
+});
+
+router.get("/editCard/:spotId", (req, res, next) => {
+  const spotId = req.params.spotId;
+  console.log(spotId);
+  Spots.find({ _id: spotId })
+    .populate("author")
+    .then(spots => {
+      res.render("editCard", { spots });
+    });
+});
+
+router.post("/edit/:spotId", (req, res, next) => {
+  const {
+    editName,
+    editDestination,
+    editVisitDate,
+    editStatus,
+    editCategory,
+    editPrice,
+    editComment,
+    editImg,
+    editRanking,
+    editAddress
+  } = req.body;
+
+  Spots.findByIdAndUpdate(req.params.spotId, {
+    name: editName,
+    destination: editDestination,
+    visitDate: editVisitDate,
+    status: editStatus,
+    category: editCategory,
+    price: editPrice,
+    comment: editComment,
+    img: editImg,
+    ranking: editRanking,
+    address: editAddress
+  })
+    .then(data => {
+      res.redirect("/spotCard/" + data._id);
+    })
+    .catch(err => {
+      next(err);
     });
 });
 
@@ -147,7 +200,7 @@ router.get("/following", (req, res) => {
 router.get("/unfollow/:id", (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
-    { $delete: { _id: req.params.id } },
+    { $pull: { inspirations: req.params.id } },
     { new: true }
   ).then(updatedUser => {
     res.redirect("/following");
@@ -155,16 +208,13 @@ router.get("/unfollow/:id", (req, res) => {
 });
 
 router.get("/delete/:id", (req, res) => {
-  Spots.findOneAndDelete(
-    { _id: req.user._id },
-    { $pull: { inspirations: req.params.id } },
-    { new: true }
-  ).then(updatedUser => {
-    res.redirect("/spotCard");
+  const spotId = req.params.id;
+  Spots.findOneAndDelete({ _id: spotId }).then(() => {
+    res.redirect("/profile");
   });
 });
 
-router.post("/bla", (req, res, next) => {
+router.post("/addCardTo", (req, res, next) => {
   const {
     myName,
     myDestination,
@@ -177,7 +227,6 @@ router.post("/bla", (req, res, next) => {
     myRanking,
     myAddress
   } = req.body;
-  console.log(req.body);
   Spots.create({
     name: myName,
     destination: myDestination,

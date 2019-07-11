@@ -18,8 +18,8 @@
       top: 10%;
       right: 10%;
       bottom: ;
-      width: 10%;
-      height: 10%
+      width: 20%;
+      height: 20%
     }
   </style>
 </head>
@@ -39,6 +39,7 @@
       left: 50%;
       margin-left: -25%;
       top: 20px;
+      visibility: hidden
     }
 
     .mapboxgl-ctrl-geocoder {
@@ -52,58 +53,67 @@
   <h1>{{this.name}}</h1>
   <h2>{{this.author.username}} ranked this spot as {{this.ranking}}</h2>
 
-  <form id="spot-add" action="/bla" method="POST">
+  <form id="spot-add" action="/addCardTo" method="POST">
     <label for="myName">{{this.name}}</label>
-    <input type="text" name="myName" id="myName" value="{{this.name}}" style="visibility: hidden">
+    <input type="text" name="myName" id="name" value="{{this.name}}" style="visibility: hidden">
     <br>
     <label for="myAddress">{{ this.address }}</label>
-    <input type="text" name="myAddress" id="myAddress" value="{{this.address}}" style="visibility: hidden">
+    <input type="text" name="myAddress" id="address" value="{{this.address}}" style="visibility: hidden">
     <br>
     <label for="myDestination">{{this.destination}}</label>
-    <input type="text" name="myDestination" id="myDestination" value="{{this.destination}}" style="visibility: hidden">
+    <input type="text" name="myDestination" id="destination" value="{{this.destination}}" style="visibility: hidden">
     <br>
     <label for="myVisitDate">{{this.visitDate}}</label>
-    <input type="text" name="myVisitDate" id="myVisitDate" value="{{this.visitDate}}" style="visibility: hidden">
+    <input type="text" name="myVisitDate" id="visitDate" value="{{this.visitDate}}" style="visibility: hidden">
     <br>
     <label for="myStatus">{{this.status}}</label>
-    <input type="text" name="myStatus" id="myStatus" value="{{this.status}}" style="visibility: hidden">
+    <input type="text" name="myStatus" id="status" value="{{this.status}}" style="visibility: hidden">
     <br>
     <label for="myCategory">{{this.category}}</label>
-    <input type="text" name="myCategory" id="myCategory" value="{{this.category}}" style="visibility: hidden">
+    <input type="text" name="myCategory" id="category" value="{{this.category}}" style="visibility: hidden">
     <br>
     <label for="myPrice">{{this.price}}</label>
-    <input type="text" name="myPrice" id="myPrice" value="{{this.price}}" style="visibility: hidden">
+    <input type="text" name="myPrice" id="price" value="{{this.price}}" style="visibility: hidden">
     <br>
     <label for="myComment">{{this.comment}}</label>
-    <input type="text" name="myComment" id="myComment" value="{{this.comment}}" style="visibility: hidden">
+    <input type="text" name="myComment" id="comment" value="{{this.comment}}" style="visibility: hidden">
     <br>
     <label for="myImg">{{this.image}}</label>
-    <input type="text" name="myImg" id="myImg" value="{{this.image}}" style="visibility: hidden">
+    <input type="text" name="myImg" id="img" value="{{this.image}}" style="visibility: hidden">
     <br>
     <label for="myRanking">{{this.ranking}}</label>
-    <input type="text" name="myRanking" id="myRanking" value="{{this.ranking}}" style="visibility: hidden">
+    <input type="text" name="myRanking" id="ranking" value="{{this.ranking}}" style="visibility: hidden">
     <br>
     <button type="Submit">add spot to my andel list</button>
   </form>
 
   <span>please fill in all the with * marked forms</span>
 
-  {{!-- <a href="https://www.google.com/maps/search/?api=1&query={{ this.address }}">visit on google</a> --}}
-
   <a href="https://www.google.com/maps/search/?api=1&query={{ this.address }}">visit on google</a>
-  <form action="/delete/{{this.id}}" method="GET">
+
+  {{#if this.owner}}
+  <form action="/delete/{{this._id}}" method="GET">
     <button type="submit">delete</button>
   </form>
-  {{/spots}}
+
+  <button onclick=window.location.href="/editCard/{{this.id}}">edit</button>
+
+
+  {{/if}} {{/spots}}
+
 
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbWluc2hlbmciLCJhIjoiY2pydDhjMjlwMXhpaDN5cHMxcjNya2ZmbyJ9.Tc5kmo0vZ1VKJbLK83OloA';
+    mapboxgl.accessToken =
+      'pk.eyJ1IjoiYW5nbWluc2hlbmciLCJhIjoiY2pydDhjMjlwMXhpaDN5cHMxcjNya2ZmbyJ9.Tc5kmo0vZ1VKJbLK83OloA';
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-79.4512, 43.6568],
+      center: [{{ coor }}],
       zoom: 13
     });
+
+    var marker = new mapboxgl.Marker()
+      .setLngLat([{{ coor }}]).addTo(map);
 
     var geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
@@ -111,8 +121,8 @@
     });
 
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-    const spotAddress = document.getElementById("spotAddress").innerText
-    document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')[0].innerText = spotAddress
+    //const spotAddress = document.getElementById("spotAddress").innerText
+    //document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')[0].innerText = spotAddress
 
     console.log(spotAddress)
   </script>

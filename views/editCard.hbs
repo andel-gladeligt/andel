@@ -1,0 +1,57 @@
+{{#spots}}
+
+<h1>{{this.name}}</h1>
+
+<form id="spot-edit" action="/edit/{{this.id}}" method="POST">
+  <label for="editName">name: </label>
+  <input type="text" name="editName" id="name" value="{{this.name}}" style="text-transform:lowercase">
+  <br>
+  <label for="editAddress">address: </label>
+  <input type="text" name="editAddress" id="address" value="{{this.address}}" style="text-transform:lowercase">
+  <br>
+  <label for="editDestination">destination: </label>
+  <input type="text" name="editDestination" id="destination" value="{{this.destination}}"
+    style="text-transform:lowercase">
+  <br>
+  <label for="editVisitDate">visit-date: </label>
+  <input type="date" name="editVisitDate" id="visitDate" value="{{this.visitDate}}" style="text-transform:lowercase">
+  <br>
+  <label for="editStatus">status: </label>
+  <select name="editStatus" id="editStatus" value="{{this.status}}">
+    <option value="visited">visited</option>
+    <option value="in-planning">in-planning</option>
+  </select>
+  <br>
+  <label for="editCategory">category: </label>
+  <select name="editCategory" id="category" value="{{this.category}}">
+    <option value="food">food</option>
+    <option value="art">art</option>
+    <option value="sleep">sleeps</option>
+    <option value="gems">gems</option>
+  </select>
+  <br>
+
+  <label for="editPrice">price: </label>
+  <select name="editPrice" id="price" value="{{this.price}}">
+    <option value="budget">budget</option>
+    <option value="standard">standard</option>
+    <option value="spendy">spendy</option>
+  </select>
+
+  <br>
+  <label for="editComment">comment: </label>
+  <input type="text" name="editComment" id="comment" value="{{this.comment}}" style="text-transform:lowercase">
+  <br>
+  <label for="editImg">image: </label>
+  <input type="text" name="editImg" id="img" value="{{this.image}}">
+  <br>
+  <label for="editRanking">{{this.ranking}}</label>
+  <select name="editRanking" id="ranking" value="{{this.ranking}}">
+    <option value="nice">nice</option>
+    <option value="super-nice">super-nice</option>
+    <option value="super-super-nice">super-super-nice</option>
+  </select>
+  <br>
+  <button type="Submit">edit this list</button>
+
+  {{/spots}}

@@ -62,6 +62,8 @@ hbs.registerHelper("ifUndefined", (value, options) => {
   }
 });
 
+hbs.registerHelper("stringify", data => JSON.stringify(data));
+
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 

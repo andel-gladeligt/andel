@@ -1,16 +1,19 @@
-<h1>andel</h1>
-<p>welcome to andel</p>
+<p id="welcomeSentence">welcome to andel</p>
 <div class="profileMenu">
-  <a id="addSpotsBtn" href="/spots/add">add new andel</a>
-  <a href="/following">my friends</a>
-  <a href="/friendsSpots">inspiration</a>
-  <a href="/messages">messages</a>
+  <a id="addSpotsBtn" href="/spots/add">add new <br> andel</a>
+  <a href="/following">my <br> friends</a>
+  <a href="/friendsSpots">inspi- <br>ration</a>
+  <a href="/messages">messa- <br>ges</a>
   <a href="/auth/logout">logout</a>
 </div>
 <div class="myDestination">
   {{#each unique}}
   <div class="square">
-    <div class="squareContent" href="/myList/{{this}}">{{this}}</div>
+    <a href="/myList/{{this}}">
+      <div class="squareContent">
+        {{this}}
+      </div>
+    </a>
   </div>
   {{/each}}
 </div>

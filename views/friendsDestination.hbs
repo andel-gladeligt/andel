@@ -1,8 +1,79 @@
 <h1>{{spots.0.destination}}</h1>
 <p>this page shows all spots of one destination of friends</p>
 <a id="home" href="/profile">home</a>
-{{#each spots}}
-<a href="/spotCard/{{this.id}}">{{this.name}}</a>{{this.ranking}}
-{{this.category}}
-{{this.author.username}}
-{{/each}}
+
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btnFilter" id="filterFood"> food</button>
+  <button class="btnFilter" id="filterArt"> art</button>
+  <button class="btnFilter" id="filterSleeps"> sleeps</button>
+  <button class="btnFilter" id="filterGems"> gems</button>
+</div>
+
+<div id="allFriendsSpots">
+  {{#each spots}}
+  <a href="/spotCard/{{this.id}}">{{this.name}}</a>{{this.ranking}}
+  {{this.category}}
+  {{this.author.username}}
+  {{/each}}
+</div>
+
+<div id='optionBlock'></div>
+
+<script>
+
+
+
+  const spots = {{{ stringify spots }}}
+
+  let food = spots.filter(el => el.category === "food")
+  let art = spots.filter(el => el.category === "art")
+  let sleeps = spots.filter(el => el.category === "sleeps")
+  let gems = spots.filter(el => el.category === "gems")
+  let optionBlock = document.getElementById("optionBlock");
+
+  const removeNodeChildren = () => {
+    while (optionBlock.firstChild) {
+      optionBlock.removeChild(optionBlock.firstChild);
+    }
+  }
+
+  document.getElementById('filterFood').addEventListener('click', () => {
+    removeNodeChildren()
+    food.forEach(el => {
+      var para = document.createElement("P");
+      para.innerText = el.name
+      optionBlock.appendChild(para);
+    })
+  })
+
+  document.getElementById('filterArt').addEventListener('click', () => {
+    removeNodeChildren()
+    art.forEach(el => {
+      var para = document.createElement("P");
+      para.innerText = el.name
+      optionBlock.appendChild(para);
+    })
+  })
+
+  document.getElementById('filterGems').addEventListener('click', () => {
+    removeNodeChildren()
+    gems.forEach(el => {
+      var para = document.createElement("P");
+      para.innerText = el.name
+      optionBlock.appendChild(para);
+    })
+  })
+
+  document.getElementById('filterSleeps').addEventListener('click', () => {
+    removeNodeChildren()
+    sleeps.forEach(el => {
+      var para = document.createElement("P");
+      para.innerText = el.name
+      optionBlock.appendChild(para);
+    })
+  })
+
+
+
+</script>

@@ -8,21 +8,18 @@ const spotsSchema = new Schema(
     destination: { type: String, required: true },
     visitDate: { type: Date, default: Date.now },
     status: {
-      type: String,
-      enum: ["visited", "in-planning"]
+      type: String
     },
     category: {
       type: String,
-      enum: ["food", "art", "sleep", "gems"],
       required: true
     },
     price: {
-      type: String,
-      enum: ["budget", "standard", "spendy"]
+      type: String
     },
     comment: String,
     image: String,
-    ranking: { type: String, enum: ["nice", "super-nice", "super-super-nice"] },
+    ranking: { type: String },
     author: {
       type: Schema.Types.ObjectId,
       ref: "User"
