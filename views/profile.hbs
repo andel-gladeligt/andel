@@ -1,62 +1,16 @@
 <h1>andel</h1>
-<p>Welcome to andel</p>
+<p>welcome to andel</p>
 <div class="profileMenu">
+  <a id="addSpotsBtn" href="/spots/add">add new andel</a>
+  <a href="/following">my friends</a>
   <a href="/friendsSpots">inspiration</a>
   <a href="/messages">messages</a>
   <a href="/auth/logout">logout</a>
 </div>
-
-<a id="addSpotsBtn" href="/spots/add">add new spot</a>
-
-
-{{!-- display all the users that we follow --}}
-<a href="/following">people I follow</a>
-
-
-{{!-- form to add another user via email or username --}}
-<form action="/user/add" method="POST">
-  <label for="inspirations">please type in the username of people you want to follow: </label>
-  <input type="text" name="userSearch" id="inspirations" />
-  <button type="submit">add user</button>
-</form>
-
-{{#if errorMessage }}
-<div>{{errorMessage}}</div>
-{{/if}}
-
-<div class="myDestinations">
+<div class="myDestination">
   {{#each unique}}
-  <div class="">
-    <a href="/myList/{{this}}">{{this}}</a>
-    {{/each}}
+  <div class="square">
+    <div class="squareContent" href="/myList/{{this}}">{{this}}</div>
   </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-  </div>
-</div>
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-  </div>
+  {{/each}}
 </div>

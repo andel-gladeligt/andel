@@ -147,10 +147,57 @@ router.get("/following", (req, res) => {
 router.get("/unfollow/:id", (req, res) => {
   User.findOneAndUpdate(
     { _id: req.user._id },
-    { $pull: { inspirations: req.params.id } },
+    { $delete: { _id: req.params.id } },
     { new: true }
   ).then(updatedUser => {
     res.redirect("/following");
   });
 });
+
+router.get("/delete/:id", (req, res) => {
+  Spots.findOneAndDelete(
+    { _id: req.user._id },
+    { $pull: { inspirations: req.params.id } },
+    { new: true }
+  ).then(updatedUser => {
+    res.redirect("/spotCard");
+  });
+});
+
+router.post("/bla", (req, res, next) => {
+  const {
+    myName,
+    myDestination,
+    myVisitDate,
+    myStatus,
+    myCategory,
+    myPrice,
+    myComment,
+    myImg,
+    myRanking,
+    myAddress
+  } = req.body;
+  console.log(req.body);
+  Spots.create({
+    name: myName,
+    destination: myDestination,
+    visitDate: myVisitDate,
+    status: myStatus,
+    category: myCategory,
+    price: myPrice,
+    comment: myComment,
+    img: myImg,
+    ranking: myRanking,
+    address: myAddress,
+    author: req.user._id
+  })
+    .then(data => {
+      res.redirect("/friendsDestination/" + data.destination);
+      res.sendStatus(204);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 module.exports = router;

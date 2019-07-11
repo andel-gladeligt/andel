@@ -26,7 +26,8 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: #fdd049;
-  padding: 50px; }
+  padding-bottom: 10px;
+  padding-top: 20px; }
 
 a {
   color: #00b7ff; }
@@ -34,22 +35,61 @@ a {
 #welcome {
   margin: 30px; }
 
-.myDestination:nth-child(1) {
+.profileMenu {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5vw;
+  width: 90vw;
+  height: 10vw; }
+
+.myDestination {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  width: 100vw;
+  height: 100vw;
+  margin: 20vw; }
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.squareContent {
+  color: white;
+  position: absolute;
+  font-size: 4vw; }
+
+.square:nth-child(6n + 1) {
+  position: relative;
+  flex: calc(33.333%);
   background-color: #d6bae2; }
 
-.myDestination:nth-child(2) {
+.square:nth-child(6n + 2) {
+  position: relative;
+  flex: calc(33.333%);
   background-color: #3430ba; }
 
-.myDestination:nth-child(3) {
+.square:nth-child(6n + 3) {
+  position: relative;
+  flex: calc(33.333%);
   background-color: #5c680c; }
 
-.myDestination:nth-child(4) {
+.square:nth-child(6n + 4) {
+  position: relative;
+  flex: calc(33.333%);
   background-color: #20c572; }
 
-.myDestination:nth-child(5) {
+.square:nth-child(6n + 5) {
+  position: relative;
+  flex: calc(33.333%);
   background-color: #e07f00; }
 
-.myDestination:nth-child(6) {
+.square:nth-child(6n + 6) {
+  position: relative;
+  flex: calc(33.333%);
   background-color: #8ad2e4; }
 
 /*# sourceMappingURL=style.css.map */

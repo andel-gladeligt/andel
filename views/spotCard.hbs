@@ -52,19 +52,48 @@
   <h1>{{this.name}}</h1>
   <h2>{{this.author.username}} ranked this spot as {{this.ranking}}</h2>
 
+  <form id="spot-add" action="/bla" method="POST">
+    <label for="myName">{{this.name}}</label>
+    <input type="text" name="myName" id="myName" value="{{this.name}}" style="visibility: hidden">
+    <br>
+    <label for="myAddress">{{ this.address }}</label>
+    <input type="text" name="myAddress" id="myAddress" value="{{this.address}}" style="visibility: hidden">
+    <br>
+    <label for="myDestination">{{this.destination}}</label>
+    <input type="text" name="myDestination" id="myDestination" value="{{this.destination}}" style="visibility: hidden">
+    <br>
+    <label for="myVisitDate">{{this.visitDate}}</label>
+    <input type="text" name="myVisitDate" id="myVisitDate" value="{{this.visitDate}}" style="visibility: hidden">
+    <br>
+    <label for="myStatus">{{this.status}}</label>
+    <input type="text" name="myStatus" id="myStatus" value="{{this.status}}" style="visibility: hidden">
+    <br>
+    <label for="myCategory">{{this.category}}</label>
+    <input type="text" name="myCategory" id="myCategory" value="{{this.category}}" style="visibility: hidden">
+    <br>
+    <label for="myPrice">{{this.price}}</label>
+    <input type="text" name="myPrice" id="myPrice" value="{{this.price}}" style="visibility: hidden">
+    <br>
+    <label for="myComment">{{this.comment}}</label>
+    <input type="text" name="myComment" id="myComment" value="{{this.comment}}" style="visibility: hidden">
+    <br>
+    <label for="myImg">{{this.image}}</label>
+    <input type="text" name="myImg" id="myImg" value="{{this.image}}" style="visibility: hidden">
+    <br>
+    <label for="myRanking">{{this.ranking}}</label>
+    <input type="text" name="myRanking" id="myRanking" value="{{this.ranking}}" style="visibility: hidden">
+    <br>
+    <button type="Submit">add spot to my andel list</button>
+  </form>
 
-  <span>{{this.image}}</span>
-  <ul style="list-style: none">
-    <li>{{this.destination}}</li>
-    <li>{{ this.address }}"</li>
-    <li>{{this.price}}</li>
-    <li>{{this.visitDate}}</li>
-    <li>{{this.status}}</li>
-    <li>{{this.category}}</li>
-    <li>{{this.comment}}</li>
-    <li>{{this.author}}</li>
-  </ul>
+  <span>please fill in all the with * marked forms</span>
+
+  {{!-- <a href="https://www.google.com/maps/search/?api=1&query={{ this.address }}">visit on google</a> --}}
+
   <a href="https://www.google.com/maps/search/?api=1&query={{ this.address }}">visit on google</a>
+  <form action="/delete/{{this.id}}" method="GET">
+    <button type="submit">delete</button>
+  </form>
   {{/spots}}
 
   <script>
@@ -82,9 +111,13 @@
     });
 
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+    const spotAddress = document.getElementById("spotAddress").innerText
+    document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')[0].innerText = spotAddress
+
+    console.log(spotAddress)
   </script>
 
-  <button type="submit">add this to my andel list</button>
+
 
 </body>
 
