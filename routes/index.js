@@ -67,7 +67,9 @@ router.post("/spots/add", (req, res, next) => {
       res.redirect("/spots/add");
     })
     .catch(err => {
-      next(err);
+      res.render("spotsAdd", {
+        errorMessage: "Please fill in all the with * marked forms"
+      });
     });
 });
 
