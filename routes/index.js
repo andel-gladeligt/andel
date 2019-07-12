@@ -144,8 +144,12 @@ router.get("/spotCard/:spotId", (req, res, next) => {
       spots[0].owner = owner;
       console.log(spots[0]);
       geo.geocode("mapbox.places", spots[0].address, function(err, geoData) {
-        console.log(geoData);
-        res.render("spotCard", { spots, coor: geoData.features[0].center });
+        const coor = (geoData &&
+          geoData.features &&
+          geoData.features[0] &&
+          geoData.features[0].center) || [13.4, 52.52];
+
+        res.render("spotCard", { spots, coor: coor });
       });
     });
 });
