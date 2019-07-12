@@ -9,10 +9,7 @@
 <div class="myDestination">
   {{#each unique}}
   <div class="square">
-    <a href="/myList/{{this}}">
-      <div class="squareContent">
-        {{this}}
-      </div>
+    <a class="squareContent" href="/myList/{{this}}">{{this}} </a>
     </a>
   </div>
   {{/each}}

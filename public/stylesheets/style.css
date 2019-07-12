@@ -72,7 +72,7 @@ body {
   flex-wrap: wrap;
   margin-top: 40px;
   width: 100vw;
-  height: 100vw;
+  height: 75vw;
   margin: 20vw; }
 
 .square {
@@ -80,10 +80,15 @@ body {
   justify-content: center;
   align-items: center; }
 
-.squareContent {
+a.squareContent {
   color: white;
   position: absolute;
   font-size: 4vw; }
+
+a.squareContent:hover {
+  color: #ececff;
+  text-decoration-line: line-through;
+  -webkit-text-stroke: 0.3px white; }
 
 .square:nth-child(6n + 1) {
   position: relative;
@@ -113,6 +118,109 @@ body {
 .square:nth-child(6n + 6) {
   position: relative;
   flex: calc(33.333%);
-  background-color: #8ad2e4; }
+  background-color: #8db8fe; }
+
+#friendsSpotHome {
+  color: #8db8fe; }
+
+#friendsDestinationHome {
+  color: #8db8fe; }
+
+#allFriendsSpots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: center;
+  width: 100vw;
+  height: 75vw;
+  margin: 10vw; }
+
+#allFriendsSpots2 {
+  background-color: #8db8fe;
+  padding: 1vw;
+  margin: 2vw;
+  text-align: center;
+  color: white;
+  line-height: 20px; }
+
+#myBtnContainer {
+  flex: display; }
+
+.btnFilter:hover {
+  color: #ececff;
+  text-decoration-line: line-through;
+  -webkit-text-stroke: 0.3px #ececff; }
+
+#filterAll {
+  background-color: #8db8fe;
+  position: relative;
+  color: #ececff;
+  margin: 1vw; }
+
+.colorSpots {
+  background-color: #8db8fe;
+  padding: 1vw;
+  color: #ececff;
+  line-height: 20px; }
+
+#filterFood {
+  background-color: #20c572;
+  position: relative;
+  color: #ececff;
+  margin: 1vw; }
+
+.colorFood {
+  background-color: #20c572;
+  padding: 1vw;
+  color: #ececff;
+  line-height: 20px; }
+
+#filterSleeps {
+  background-color: #eb4245;
+  position: relative;
+  color: #ececff;
+  margin: 1vw; }
+
+.colorSleeps {
+  background-color: #eb4245;
+  padding: 1vw;
+  color: #ececff;
+  line-height: 20px; }
+
+#filterGems {
+  background-color: #e07f00;
+  position: relative;
+  color: #ececff;
+  margin: 1vw; }
+
+.colorGems {
+  background-color: #e07f00;
+  padding: 1vw;
+  color: #ececff;
+  line-height: 20px; }
+
+#filterArt {
+  background-color: #5c680c;
+  position: relative;
+  color: #ececff;
+  margin: 1vw; }
+
+.colorArt {
+  background-color: #5c680c;
+  padding: 1vw;
+  color: #ececff;
+  line-height: 20px; }
+
+#optionBlock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 5vw;
+  width: 80vw; }
+
+#optionBlock p {
+  margin-top: 5vw;
+  text-align: center;
+  padding: 2vw; }
 
 /*# sourceMappingURL=style.css.map */

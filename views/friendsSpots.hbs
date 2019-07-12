@@ -1,7 +1,10 @@
 <h1>spots</h1>
-<p>this page shows all destinations from spots of friends</p> <a id="home" href="/profile">home</a>
-<div>
+<p>where your friends hanging</p>
+<a id="friendsSpotHome" href="/profile">home</a>
+<div class="myDestination">
   {{#each cat}}
-  <a href="/friendsDestination/{{this}}">{{this}}</a>
+  <div class="square">
+    <a class="squareContent" href="/friendsDestination/{{this}}">{{this}}</a>
+  </div>
   {{/each}}
 </div>
