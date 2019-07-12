@@ -5,8 +5,7 @@
 
 <div id="myBtnContainer">
   <button class="btnFilter" id="filterAll"> show all</button>
-  <button class="btnFilter" id="filterFood"> food</button>
-  <button class="btnFilter" id="filterArt"> art</button>
+  <button class="btnFilter" id="filterFood"> food</button> <button class="btnFilter" id="filterArt"> art</button>
   <button class="btnFilter" id="filterSleeps"> sleeps</button>
   <button class="btnFilter" id="filterGems"> gems</button>
 </div>
@@ -14,7 +13,7 @@
 <div id="allFriendsSpots">
   {{#each spots}}
   <div id="allFriendsSpots2">
-    <a href="/spotCard/{{this.id}}"> {{this.name}} </a>
+    <a href="/spotCard/{{this._id}}"> {{this.name}} </a>
     <br> {{this.category}} <br>
     {{this.ranking}}<br> by: {{this.author.username}}
   </div>
@@ -49,7 +48,7 @@
     if (removeFriendsSpots) removeFriendsSpots.remove();
     spots.forEach(el => {
       var para = document.createElement("P");
-      para.innerHTML = `<div class="colorSpots"> <a href="/spotCard/${el.id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
+      para.innerHTML = `<div class="colorSpots"> <a href="/spotCard/${el._id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
       optionBlock.appendChild(para);
     })
   })
@@ -60,7 +59,7 @@
     if (removeFriendsSpots) removeFriendsSpots.remove();
     food.forEach(el => {
       var para = document.createElement("P");
-      para.innerHTML = `<div class="colorFood"> <a href="/spotCard/${el.id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
+      para.innerHTML = `<div class="colorFood"> <a href="/spotCard/${el._id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
       optionBlock.appendChild(para);
     })
   })
@@ -71,7 +70,7 @@
     if (removeFriendsSpots) removeFriendsSpots.remove();
     art.forEach(el => {
       var para = document.createElement("P");
-      para.innerHTML = `<div class="colorArt"> <a href="/spotCard/${el.id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
+      para.innerHTML = `<div class="colorArt"> <a href="/spotCard/${el._id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
       optionBlock.appendChild(para);
     })
   })
@@ -82,7 +81,7 @@
     if (removeFriendsSpots) removeFriendsSpots.remove();
     gems.forEach(el => {
       var para = document.createElement("P");
-      para.innerHTML = `<div class="colorGems"> <a href="/spotCard/${el.id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
+      para.innerHTML = `<div class="colorGems"> <a href="/spotCard/${el._id}"> ${el.name}</a> </br> ${el.category} </br> ${el.ranking} </br> by ${el.author.username}</div>`
       optionBlock.appendChild(para);
     })
   })
@@ -93,7 +92,7 @@
     if (removeFriendsSpots) removeFriendsSpots.remove();
     sleeps.forEach(el => {
       var para = document.createElement("P");
-      para.innerHTML = `< div class="colorSleeps" > <a href="/spotCard/${el.id}"> ${el.name}</a> </br > ${el.category} </br > ${el.ranking} </br > by ${el.author.username}</div >`
+      para.innerHTML = `< div class="colorSleeps" > <a href="/spotCard/${el._id}"> ${el.name}</a> </br > ${el.category} </br > ${el.ranking} </br > by ${el.author.username}</div >`
       //el.category el.ranking el.author.username
       optionBlock.appendChild(para);
     })
