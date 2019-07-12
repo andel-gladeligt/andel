@@ -1,13 +1,12 @@
-<h1>andel</h1>
-<h2>Signup</h2>
+<h2 id="loginH2">Signup</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
+<form id="form-container" action="/auth/signup" method="POST" id="form-container">
+  <label style="color: white" for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="lakshmi">
 
   <br><br>
 
-  <label for="password">Password</label>
+  <label style="color: white" for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="your password">
   <br>
   {{#if message }}
@@ -16,9 +15,9 @@
 
   <br><br>
 
-  <button>create account</button>
+  <button style="margin: 2vw" id="loginButton">create account</button>
 
-  <p class="account-message">
+  <p style="color: #8db8fe;" class="account-message">
     Do you already have an account?
     <a href="/auth/login">Login</a>
   </p>

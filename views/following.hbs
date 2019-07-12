@@ -1,9 +1,11 @@
-<h1>following</h1>
-<p>this page shows all persons I am following</p>
-<a id="home" href="/profile">home</a>
+<a id="followingHome" href="/profile">home</a>
+<div class="menuFollow">
+  <h2>following</h2>
+  <p>this page shows all persons I am following</p>
+</div>
 
 <form action="/user/add" method="POST">
-  <label for="inspirations">username or email address: </label>
+  <label style="color:#CC5114" for="inspirations">username or email address: </label>
   <input type="text" name="userSearch" id="inspirations" />
   <button type="submit">add user</button>
 </form>

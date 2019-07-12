@@ -15,17 +15,19 @@
 
     #map {
       position: absolute;
-      top: 10%;
-      right: 10%;
+      top: 45%;
+      right: 20%;
       bottom: ;
-      width: 20%;
-      height: 20%
+      width: 30%;
+      height: 30%
     }
   </style>
 </head>
 
-<body>
-  <a id="home" href="/profile">home</a>
+<a id="spotCardHome" href="/profile">home</a>
+
+<body class="spotCardClass">
+
   <script
     src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet'
@@ -38,7 +40,7 @@
       width: 50%;
       left: 50%;
       margin-left: -25%;
-      top: 20px;
+      top: 5px;
       visibility: hidden
     }
 
@@ -50,40 +52,110 @@
   <div id='geocoder' class='geocoder'></div>
 
   {{#spots}}
-  <h1>{{this.name}}</h1>
-  <h2>{{this.author.username}} ranked this spot as {{this.ranking}}</h2>
+  <h2>{{this.name}}</h2>
+  <p id="whoRanked">{{this.author.username}} ranked this spot as {{this.ranking}}</p>
 
   <form id="spot-add" action="/addCardTo" method="POST">
-    <label for="myName">{{this.name}}</label>
-    <input type="text" name="myName" id="name" value="{{this.name}}" style="visibility: hidden">
-    <br>
-    <label for="myAddress">{{ this.address }}</label>
-    <input type="text" name="myAddress" id="address" value="{{this.address}}" style="visibility: hidden">
-    <br>
-    <label for="myDestination">{{this.destination}}</label>
-    <input type="text" name="myDestination" id="destination" value="{{this.destination}}" style="visibility: hidden">
-    <br>
-    <label for="myVisitDate">{{this.visitDate}}</label>
-    <input type="text" name="myVisitDate" id="visitDate" value="{{this.visitDate}}" style="visibility: hidden">
-    <br>
-    <label for="myStatus">{{this.status}}</label>
-    <input type="text" name="myStatus" id="status" value="{{this.status}}" style="visibility: hidden">
-    <br>
-    <label for="myCategory">{{this.category}}</label>
-    <input type="text" name="myCategory" id="category" value="{{this.category}}" style="visibility: hidden">
-    <br>
-    <label for="myPrice">{{this.price}}</label>
-    <input type="text" name="myPrice" id="price" value="{{this.price}}" style="visibility: hidden">
-    <br>
-    <label for="myComment">{{this.comment}}</label>
-    <input type="text" name="myComment" id="comment" value="{{this.comment}}" style="visibility: hidden">
-    <br>
-    <label for="myImg">{{this.image}}</label>
-    <input type="text" name="myImg" id="img" value="{{this.image}}" style="visibility: hidden">
-    <br>
-    <label for="myRanking">{{this.ranking}}</label>
-    <input type="text" name="myRanking" id="ranking" value="{{this.ranking}}" style="visibility: hidden">
-    <br>
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">name:</div>
+      <div><label for=" myName">{{this.name}}</label></div>
+    </div>
+    <div>
+      <input type="text" name="myName" id="name" value="{{this.name}}" style="visibility: hidden">
+    </div>
+
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">destination:</div>
+      <div>
+        <label for="myDestination">{{this.destination}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myDestination" id="destination" value="{{this.destination}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">visitDate:</div>
+      <div>
+        <label for="myVisitDate">{{this.visitDate}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myVisitDate" id="visitDate" value="{{this.visitDate}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">status:</div>
+      <div>
+        <label for="myStatus">{{this.status}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myStatus" id="status" value="{{this.status}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">category:</div>
+      <div>
+        <label for="myCategory">{{this.category}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myCategory" id="category" value="{{this.category}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">price:</div>
+      <div>
+        <label for="myPrice">{{this.price}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myPrice" id="price" value="{{this.price}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">comment:</div>
+      <div>
+        <label for="myComment">{{this.comment}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myComment" id="comment" value="{{this.comment}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">image:</div>
+      <div>
+        <label for="myImg">{{this.image}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myImg" id="img" value="{{this.image}}" style="visibility: hidden">
+    </div>
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">ranking:</div>
+      <div>
+        <label for="myRanking">{{this.ranking}}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myRanking" id="ranking" value="{{this.ranking}}" style="visibility: hidden">
+    </div>
+
+
+    <div class="spotLabelBox">
+      <div class="spotLabelBoxFirst">adress:</div>
+      <div>
+        <label for="myAddress">{{ this.address }}</label>
+      </div>
+    </div>
+    <div>
+      <input type="text" name="myAddress" id="name" value="{{this.address}}" style="visibility: hidden">
+    </div>
+
     <button type="Submit">add spot to my andel list</button>
   </form>
 
@@ -92,12 +164,14 @@
   <a href="https://www.google.com/maps/search/?api=1&query={{ this.address }}">visit on google</a>
 
   {{#if this.owner}}
-  <form action="/delete/{{this._id}}" method="GET">
-    <button type="submit">delete</button>
-  </form>
 
-  <button onclick=window.location.href="/editCard/{{this.id}}">edit</button>
+  <div id="buttonBox">
+    <form action="/delete/{{this._id}}" method="GET">
+      <button id="deleteButton" type="submit">delete</button>
+    </form>
 
+    <button id="editButton" onclick=window.location.href="/editCard/{{this.id}}">edit</button>
+  </div>
 
   {{/if}} {{/spots}}
 
@@ -109,7 +183,7 @@
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [{{ coor }}],
-      zoom: 13
+      zoom: 11
     });
 
     var marker = new mapboxgl.Marker()

@@ -21,10 +21,13 @@
   </style>
 </head>
 
-<body>
-  <h1>create new spot</h1>
-  <p>tell us about your hidden gems...</p>
-  <a id="home" href="/profile">home</a>
+<body class="spotCardBody">
+  <div id="headerAdds">
+    <a id="home" href="/profile">home</a>
+    <h2>create new spot</h2>
+    <p>tell us about your hidden gems...</p>
+
+  </div>
 
   <script
     src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.min.js'></script>
@@ -47,56 +50,72 @@
   <div id='geocoder' class='geocoder'></div>
 
 
-  <form id="spot-add" action="/spots/add" method="POST">
-    <label for="name">spot name(*): </label>
-    <input type="text" name="name" id="name" style="text-transform:lowercase">
+  <div class="spotsAddForm">
+    <form id="spot-add" action="/spots/add" method="POST">
 
-    <label for="address">spot address: </label>
-    <input style="display: none" type="text" name="address" id="address" style="text-transform:lowercase">
+      <label for="address">spot address: </label>
+      <input style="display: none" type="text" name="address" id="address" style="text-transform:lowercase">
 
-    <label for="destination">city/destination(*): </label>
-    <input type="text" name="destination" id="destination" style="text-transform:lowercase">
+      <p>
+        <label for="name">spot name(*): </label>
+        <input type="text" name="name" id="name" style="text-transform:lowercase">
+      </p>
+      <p>
+        <label for="destination">city/destination(*): </label>
+        <input type="text" name="destination" id="destination" style="text-transform:lowercase">
+      </p>
+      <p>
+        <label for="visitDate">date of visit: </label>
+        <input type="date" name="visitDate" id="visitDate" style="text-transform:lowercase">
+      </p>
+      <p>
+        <label for="status">status: </label>
+        <select name="status" id="status">
+          <option value="visited">visited</option>
+          <option value="in-planning">in-planning</option>
+        </select>
+      </p>
+      <p>
+        <label for="category">category(*):</label>
+        <select name="category" id="category">
+          <option value="food">food</option>
+          <option value="art">art</option>
+          <option value="sleep">sleeps</option>
+          <option value="gems">gems</option>
+        </select>
+      </p>
+      <p>
+        <label for="price">price: </label>
+        <select name="price" id="price">
+          <option value="budget">budget</option>
+          <option value="standard">standard</option>
+          <option value="spendy">spendy</option>
+        </select>
+      </p>
+      <p>
+        <label for="comment">comment: </label>
+        <input type="text" name="comment" id="comment" style="text-transform:lowercase">
+      </p>
+      <p>
+        <label for="img">image: </label>
+        <input type="text" name="img" id="img">
+      </p>
+      <p>
+        <label for="ranking">ranking: </label>
+        <select name="ranking" id="ranking">
+          <option value="nice">nice</option>
+          <option value="super-nice">super-nice</option>
+          <option value="super-super-nice">super-super-nice</option>
+        </select>
+      </p>
+      <div id="buttonAddSpot">
+        <button type="submit">add your spot</button>
+      </div>
+      <br>
+      <span style="color:#EB4245 ">please fill in all the with * marked forms</span>
+    </form>
 
-    <label for="visitDate">date of visit: </label>
-    <input type="date" name="visitDate" id="visitDate" style="text-transform:lowercase">
-
-    <label for="status">status: </label>
-    <select name="status" id="status">
-      <option value="visited">visited</option>
-      <option value="in-planning">in-planning</option>
-    </select>
-
-    <label for="category">category(*):</label>
-    <select name="category" id="category">
-      <option value="food">food</option>
-      <option value="art">art</option>
-      <option value="sleep">sleeps</option>
-      <option value="gems">gems</option>
-    </select>
-
-    <label for="price">price: </label>
-    <select name="price" id="price">
-      <option value="budget">budget</option>
-      <option value="standard">standard</option>
-      <option value="spendy">spendy</option>
-    </select>
-
-    <label for="comment">comment: </label>
-    <input type="text" name="comment" id="comment" style="text-transform:lowercase">
-
-    <label for="img">image: </label>
-    <input type="text" name="img" id="img">
-
-    <label for="ranking">ranking: </label>
-    <select name="ranking" id="ranking">
-      <option value="nice">nice</option>
-      <option value="super-nice">super-nice</option>
-      <option value="super-super-nice">super-super-nice</option>
-    </select>
-
-    <button type="submit">add your spot</button>
-  </form>
-  <span>please fill in all the with * marked forms</span>
+  </div>
 
   <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW5nbWluc2hlbmciLCJhIjoiY2pydDhjMjlwMXhpaDN5cHMxcjNya2ZmbyJ9.Tc5kmo0vZ1VKJbLK83OloA';
