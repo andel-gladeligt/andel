@@ -6,16 +6,15 @@ altrosa: #EB4245
 darkblue: #3430BA
 navygreen: #5C680C
 knallgrün: #20C572
-orange: #E07F00
+orange: #CC5114
 lightblue:  #8db8fe;
 white: #ECECFF; 
 red: #EB4245; 
 
-
 */
 
 * {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Helvetica";
 }
 
 h1 {
@@ -25,6 +24,7 @@ h2 {
   font-size: 20px;
 }
 // login & signup
+
 body {
   display: flex;
   justify-content: center;
@@ -38,6 +38,9 @@ body {
   display: flex;
   align-self: flex-start;
   padding-left: 2vw;
+  padding-top: 2vw;
+  padding-bottom: 1vw;
+
   margin-left: 30px;
 }
 
@@ -62,7 +65,8 @@ body {
 }
 
 #welcome {
-  margin: 30px;
+  margin: 10px;
+  color: #ececff;
 }
 //profile & inspo
 
@@ -145,6 +149,7 @@ a.squareContent:hover {
   // height: 30vw;
 }
 
+<<<<<<< HEAD
 #friendsSpotHome {
   color: #8db8fe;
 }
@@ -260,4 +265,169 @@ a.squareContent:hover {
   margin-top: 5vw;
   text-align: center;
   padding: 2vw;
+=======
+//spotsAdd
+#headerAdds {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding-left: 6vw;
+  margin-left: 30px;
+  color: #8db8fe;
+}
+
+.spotsAddForm {
+  display: flex;
+  justify-content: center;
+  width: 15vw;
+}
+
+.spotsAddForm form {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 1em;
+}
+.spotsAddForm p {
+  display: table-row;
+}
+.spotsAddForm label {
+  display: table-cell;
+}
+.spotsAddForm input {
+  display: table-cell;
+  width: 18.5vw;
+  height: 7vh;
+}
+
+#buttonAddSpot button {
+  margin: 2vh 0;
+  padding: 1vh 1vh;
+  border-radius: 3px;
+  border: 2px solid #eb4245;
+  color: #eb4245;
+  background-color: #ececff;
+  width: 10vw;
+}
+
+#home {
+  padding-bottom: 1vh;
+}
+
+//spotCard
+.spotCardBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #e6b200;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+#spotCardHome {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding-left: 6vw;
+  margin-left: 30px;
+  color: #8db8fe;
+}
+
+#whoRanked {
+  color: #5c680c;
+}
+
+#spot-add button {
+  margin: 2vh 0;
+  padding: 1vh 1vh;
+  border-radius: 3px;
+  border: 2px solid #eb4245;
+  color: #eb4245;
+  background-color: #ececff;
+}
+
+//login
+#form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+#loginButton {
+  padding: 1vh 1vh;
+  border-radius: 3px;
+  border: 2px solid #eb4245;
+  color: #eb4245;
+  background-color: #ececff;
+}
+
+#loginH2 {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding-left: 6vw;
+  margin-left: 30px;
+  color: #8db8fe;
+}
+
+//spotCard
+
+.spotLabelBox {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.spotLabelBoxFirst {
+  width: 100px;
+  padding: 0 10px;
+}
+
+.spotLabelBox label {
+  margin-bottom: 0;
+}
+
+#deleteButton {
+  padding: 1vh 1vh;
+  margin-top: 2vh;
+  border-radius: 3px;
+  border: 2px solid #3430ba;
+  color: #3430ba;
+  background-color: #ececff;
+}
+
+#editButton {
+  padding: 1vh 1vh;
+  margin-top: 2vh;
+  border-radius: 3px;
+  border: 2px solid#CC5114;
+  color: #cc5114;
+  background-color: #ececff;
+}
+
+#buttonBox {
+  display: flex;
+  width: 20%;
+  justify-content: space-around;
+}
+
+//following
+#followingHome {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding-left: 6vw;
+  margin-left: 30px;
+  color: #3430ba;
+}
+
+.menuFollow {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding-left: 6vw;
+  margin-left: 30px;
+  margin-top: 1vw;
+  color: #8db8fe;
+>>>>>>> f3dfdb1f927810d0259edff348bd8d04459e97e8
 }

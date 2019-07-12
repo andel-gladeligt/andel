@@ -1,12 +1,12 @@
-<h2>Login</h2>
+<h2 id="loginH2">login</h2>
 
 <form action="/auth/login" method="POST" id="form-container">
-  <label for="username">Username</label>
+  <label style="color: white" for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="lakshmi">
 
   <br><br>
 
-  <label for="password">Password</label>
+  <label style="color: white" for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="your password">
   <br>
   {{#if message }}
@@ -15,10 +15,10 @@
 
   <br><br>
 
-  <button>Login</button>
+  <button style="margin: 2vw" id="loginButton">Login</button>
 
-  <p class="account-message">
-    Don't have an account yet?
+  <p style="color: #8db8fe;" class="account-message">
+    don't have an account yet?
     <a href="/auth/signup">Signup</a>
   </p>
 </form>

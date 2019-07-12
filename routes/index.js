@@ -50,6 +50,8 @@ router.post("/spots/add", (req, res, next) => {
     address
   } = req.body;
 
+  console.log(req.body);
+
   Spots.create({
     name,
     destination,
@@ -134,14 +136,15 @@ router.get("/friendsDestination/:destinationId", (req, res, next) => {
 //shows one spot - spotCard.hbs
 router.get("/spotCard/:spotId", (req, res, next) => {
   const spotId = req.params.spotId;
+  console.log(spotId);
   Spots.find({ _id: spotId })
     .populate("author")
     .then(spots => {
       let owner = req.user.username == spots[0].author.username;
       spots[0].owner = owner;
-
+      console.log(spots[0]);
       geo.geocode("mapbox.places", spots[0].address, function(err, geoData) {
-        console.log();
+        console.log(geoData);
         res.render("spotCard", { spots, coor: geoData.features[0].center });
       });
     });
